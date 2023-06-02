@@ -23,6 +23,7 @@ kuromoji.builder({ dicPath: "node_modules/kuromoji/dict" }).build(function (err,
         summary[word.surface_form]={
             count: 1,
             type: word.pos,
+            basic_form: word.basic_form,
         };
     }
     summary.sum.count++;
@@ -36,10 +37,12 @@ setTimeout(()=>{
     console.log(summary.sum);
     let result = [];
     Object.keys(summary).forEach((key)=>{
+        let val = summary[key];
         result.push({
             word: key,
-            count: summary[key].count,
-            type: summary[key].type,
+            count: val.count,
+            type: val.type,
+            basic_form: val.basic_form,
         });
     });
     // console.log(result);
