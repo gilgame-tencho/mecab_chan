@@ -4,6 +4,7 @@ const fs = require('fs');
 const yaml = require('yaml');
 const csv = require('csv');
 const stringifySync = require("csv-stringify/sync");
+const iconv = require('iconv-lite');
 
 const server_conf = yaml.parse(fs.readFileSync(__dirname + '/conf/server_conf.yml', 'utf-8'));
 
@@ -47,8 +48,9 @@ setTimeout(()=>{
     });
     // console.log(result);
     const csvString = stringifySync.stringify(result, {
-        header: true
+        header: true,
     });
+    const csvStringSjis = iconv.encode(csvString, 'Shift_JIS');
     
-    fs.writeFileSync(out_file, csvString);
+    fs.writeFileSync(out_file, csvStringSjis);
 },2000);
