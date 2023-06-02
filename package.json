@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/gilgame-tencho/mecab_chan/issues"
   },
-  "homepage": "https://github.com/gilgame-tencho/mecab_chan#readme"
+  "homepage": "https://github.com/gilgame-tencho/mecab_chan#readme",
+  "dependencies": {
+    "csv": "^6.3.1",
+    "kuromoji": "^0.1.2",
+    "yaml": "^2.3.1"
+  }
 }
