@@ -11,18 +11,21 @@ const kuromoji = require("kuromoji");
 let out_file = __dirname + '/data/bochan_result.csv';
 let words = fs.readFileSync(__dirname + '/data/bochan.txt', 'utf-8');
 let kts_words;
-let summary = { sum: 0 };
+let summary = { sum: { count: 0, type: 'sum'} };
 
 kuromoji.builder({ dicPath: "node_modules/kuromoji/dict" }).build(function (err, tokenizer) {
   // tokenizer is ready
   kts_words = tokenizer.tokenize(words);
   kts_words.forEach((word)=>{
     if(summary[word.surface_form]){
-        summary[word.surface_form]++;
+        summary[word.surface_form].count++;
     }else{
-        summary[word.surface_form]=1;
+        summary[word.surface_form]={
+            count: 1,
+            type: word.pos,
+        };
     }
-    summary.sum++;
+    summary.sum.count++;
   });
   console.log(kts_words[0]);
   console.log(kts_words.length);
@@ -35,7 +38,8 @@ setTimeout(()=>{
     Object.keys(summary).forEach((key)=>{
         result.push({
             word: key,
-            count: summary[key],
+            count: summary[key].count,
+            type: summary[key].type,
         });
     });
     // console.log(result);
