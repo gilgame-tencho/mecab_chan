@@ -45,16 +45,3 @@ setTimeout(()=>{
     
     fs.writeFileSync(out_file, csvString);
 },2000);
-
-
-// const data = [
-//     { Music: '六兆年と一夜物語', Artist: '和楽器バンド' },
-//     { Music: '天樂', Artist: '和楽器バンド' },
-//     { Music: '流星', Artist: '和楽器バンド' },
-// ];
-
-// const csvString = stringifySync.stringify(data, {
-//     header: true
-// });
-
-// fs.writeFileSync(out_file, csvString);
